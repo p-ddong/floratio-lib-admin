@@ -1,25 +1,22 @@
-'use client';
+"use client";
 
-import { createContext, useEffect, useState, ReactNode, Dispatch, SetStateAction } from 'react';
+import { createContext, useState, useEffect } from "react";
 
-type AuthContextType = {
-  token: string | null;
-  setToken: Dispatch<SetStateAction<string | null>>;
-};
+export const AuthContext = createContext<any>(null);
 
-export const AuthContext = createContext<AuthContextType | null>(null);
-
-type AuthProviderProps = {
-  children: ReactNode;
-};
-
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: any) => {
   const [token, setToken] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false); // ✅
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('authToken');
-    setToken(storedToken);
+    setIsClient(true); 
+    const savedToken = localStorage.getItem("authToken");
+    if (savedToken) {
+      setToken(savedToken);
+    }
   }, []);
+
+  if (!isClient) return null; // ✅ tránh render khi đang SSR
 
   return (
     <AuthContext.Provider value={{ token, setToken }}>

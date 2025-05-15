@@ -17,10 +17,10 @@ import { CiBoxList } from "react-icons/ci";
 
 const navItems = [
   { label: 'Home', href: '/dashboard', icon: IoHomeOutline },
-  { label: 'Plants', href: '/dashboard/plant', icon: RiPlantLine },
-  { label: 'User List', href: '/dashboard/user', icon: LuUser },
-  { label: 'Contributes', href: '/dashboard/contribute', icon: CiBoxList },
-  { label: 'Settings', href: '/dashboard/profile', icon: LuSettings },
+  { label: 'Plants', href: '/plant', icon: RiPlantLine },
+  { label: 'User List', href: '/user', icon: LuUser },
+  { label: 'Contributes', href: '/contribute', icon: CiBoxList },
+  { label: 'Settings', href: '/profile', icon: LuSettings },
 ];
 
 export default function Sidebar() {
