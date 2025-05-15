@@ -6,8 +6,10 @@ import { Field, Input, Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+// import { Toaster, toaster } from "@/components/ui/toaster"
 
-import './Login.scss'
+import "./Login.scss";
+import { BASE_API, ENDPOINT_AUTH } from "@/constant/API";
 
 type FormData = {
   username: string;
@@ -26,22 +28,43 @@ export default function Login() {
 
   useAuthRedirect(token);
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch(`${BASE_API}${ENDPOINT_AUTH.login}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const fakeToken = "abc123token";
-    localStorage.setItem("authToken", fakeToken);
-    setToken(fakeToken);
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Login failed:", errorData);
+        alert("Sai tài khoản hoặc mật khẩu");
+        return;
+      }
 
-    router.push("/dashboard");
+      const resData = await response.json();
+      const token = resData?.access_token;
+
+      if (token) {
+        localStorage.setItem("authToken", token);
+        setToken(token);
+        router.push("/dashboard");
+      } else {
+        alert("Không nhận được token từ server");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("Đã xảy ra lỗi, thử lại sau.");
+    }
   };
 
   return (
     <div className="login">
       <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-
         <h1>Floratio Lib Admin Login</h1>
-
 
         <Field.Root required invalid={!!errors.username}>
           <Field.Label>

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { Provider } from "@/components/ui/provider";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 export const metadata: Metadata = {
   title: "Floratio Lib Admin",
@@ -35,6 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider>
+          <Sidebar/>
             <AuthProvider>{children}</AuthProvider>
         </Provider>
       </body>
