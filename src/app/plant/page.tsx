@@ -2,14 +2,15 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { PlantList } from "@/types";
-import { Input, Skeleton, Box, Text, Button, HStack } from "@chakra-ui/react";
+import {  PlantList } from "@/types";
+import { Input, Skeleton, Box, Text, Button, HStack, Dialog, Portal, CloseButton } from "@chakra-ui/react";
 import { CldImage } from "next-cloudinary";
 import { BASE_API, ENDPOINT_PLANT } from "@/constant/API";
 import { StoreContext } from "@/context/StoreContext";
 import Link from "next/link";
 
 import "./Plant.scss";
+import PlantDetailFieldset from "@/components/PlantDetailForm/PlantDetailForm";
 
 const PAGE_SIZE = 100;
 
@@ -26,6 +27,9 @@ export default function PlantPage() {
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchFamily, setSearchFamily] = useState("");
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Lọc danh sách họ theo thanh search
@@ -67,7 +71,7 @@ export default function PlantPage() {
     };
 
     fetchPlants();
-  }, [plants,setPlants]);
+  }, [plants, setPlants]);
 
   useEffect(() => {
     const filtered = plants.filter((plant) => {
@@ -153,6 +157,9 @@ export default function PlantPage() {
             </div>
           )}
         </div>
+        <Button bg={"green"} onClick={() => setIsOpen(true)}>
+          Add
+        </Button>
       </HStack>
 
       {/* Grid */}
@@ -235,6 +242,33 @@ export default function PlantPage() {
           </Button>
         </HStack>
       )}
+
+      <Dialog.Root
+        size="full"
+        placement="center"
+        motionPreset="slide-in-bottom"
+        scrollBehavior="inside"
+        open={isOpen}
+      >
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <Dialog.Header>
+                <Dialog.CloseTrigger asChild onClick={() => setIsOpen(false)}>
+                  <CloseButton size="sm" />
+                </Dialog.CloseTrigger>
+              </Dialog.Header>
+              <Dialog.Body>
+                <PlantDetailFieldset
+                  initialData={undefined}
+                  onSubmit={() => {}}
+                />
+              </Dialog.Body>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
     </div>
   );
 }
