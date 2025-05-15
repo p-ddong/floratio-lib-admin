@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { Provider } from "@/components/ui/provider";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import { StoreProvider } from "@/context/StoreContext";
 
 export const metadata: Metadata = {
   title: "Floratio Lib Admin",
@@ -36,8 +37,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider>
-          <Sidebar/>
-            <AuthProvider>{children}</AuthProvider>
+          <Sidebar />
+          <AuthProvider>
+            <StoreProvider>{children}</StoreProvider>
+          </AuthProvider>
         </Provider>
       </body>
     </html>
