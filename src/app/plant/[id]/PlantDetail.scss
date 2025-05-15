@@ -1,0 +1,17 @@
+.plant-detail {
+  .common-detail {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .detail {
+      height: 100%;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: start;
+    //   flex-direction: column;
+    }
+  }
+}
