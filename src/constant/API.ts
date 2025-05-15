@@ -1,28 +1,38 @@
-export const BASE_API = "http://54.252.243.3:3000/";
+export const BASE_API = "https://be-floratio-lib.onrender.com/";
 export const ENDPOINT_AUTH = {
   login: "auth/login",
 };
+
 export const ENDPOINT_USER = {
-  list: "",
-  update: "",
-  delete: "",
-  detail: "",
+  list: "users/list",
+  create: "users/create",
+  update: "users/update",
+  delete: "users/delete",
+  detail: "users/detail",
 };
+
 export const ENDPOINT_PLANT = {
-  list: "",
-  update: "",
-  delete: "",
-  detail: "",
+  list: "plants/list",
+  create: "plants/create",
+  update: "plants/update",
+  delete: "plants/delete",
+  detail: "plants/detail",
+  families: "plants/families/list",
+  attributes: "plants/attributes/list",
 };
+
 export const ENDPOINT_CONTRIBUTE = {
-  list: "",
-  update: "",
-  delete: "",
-  detail: "",
+  list: "contributes/list",
+  create: "contributes/create",
+  update: "contributes/update",
+  delete: "contributes/delete",
+  detail: "contributes/detail",
 };
+
 export const ENDPOINT_MARK = {
-  list: "",
-  update: "",
-  delete: "",
-  detail: "",
+  list: "marks/list",
+  create: "marks/create",
+  update: "marks/update",
+  delete: "marks/delete",
+  detail: "marks/detail",
 };

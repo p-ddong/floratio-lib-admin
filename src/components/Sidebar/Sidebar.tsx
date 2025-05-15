@@ -3,7 +3,6 @@
 
 import {
   Box,
-  // Flex,
   Icon,
   Link,
   Text,
@@ -13,12 +12,15 @@ import { LuUser, LuSettings } from 'react-icons/lu';
 import { usePathname } from 'next/navigation';
 import { useColorModeValue } from '../ui/color-mode';
 import { IoHomeOutline } from "react-icons/io5";
+import { RiPlantLine } from "react-icons/ri";
+import { CiBoxList } from "react-icons/ci";
 
 const navItems = [
-  { label: 'Plants', href: '/dashboard', icon: IoHomeOutline },
-  { label: 'User List', href: '/dashboard/profile', icon: LuUser },
-  { label: 'Contributes', href: '/dashboard/settings', icon: LuSettings },
-  { label: 'Settings', href: '/dashboard/settings', icon: LuSettings },
+  { label: 'Home', href: '/dashboard', icon: IoHomeOutline },
+  { label: 'Plants', href: '/dashboard/plant', icon: RiPlantLine },
+  { label: 'User List', href: '/dashboard/user', icon: LuUser },
+  { label: 'Contributes', href: '/dashboard/contribute', icon: CiBoxList },
+  { label: 'Settings', href: '/dashboard/profile', icon: LuSettings },
 ];
 
 export default function Sidebar() {
