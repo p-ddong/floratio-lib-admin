@@ -1,4 +1,6 @@
 export const BASE_API = "https://be-floratio-lib.onrender.com/";
+export const BASE = "https://be-floratio-lib.onrender.com/";
+
 export const ENDPOINT_AUTH = {
   login: "auth/login",
 };
