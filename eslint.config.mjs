@@ -17,7 +17,7 @@ const eslintConfig = [
     rules: {
       // ✅ Tắt rule không cần thiết
       "@typescript-eslint/no-empty-object-type": "off",
-      "@typescript-eslint/no-explicit-any":"off",
+
       // ✅ Bắt dùng === thay vì ==
       eqeqeq: ["warn", "always"],
 
