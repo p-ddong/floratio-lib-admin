@@ -1,0 +1,62 @@
+.plant-detail {
+  .common-detail {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .detail {
+      display: flex;
+      justify-content:space-between;
+      align-items: flex-start;
+      flex-direction: column;
+
+      height: 300px;
+      font-size: 20px;
+      .detail-function{
+        display: flex;
+        gap: 10px;
+        padding-bottom: 20px;
+      }
+      h1 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+  }
+  .decription {
+    font-size: 13px;
+    h2 {
+      font-size: 25px;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+    .section {
+      margin-left: 15px;
+      margin-bottom: 50px;
+      .section-content-item {
+        display: flex;
+      }
+      .section-title {
+        font-size: 18px;
+        font-weight: 400;
+
+        margin-bottom: 10px;
+      }
+      .section-content {
+        margin-left: 15px;
+        .section-content-title {
+          display: inline-block;
+          width: 25%;
+          font-weight: 500;
+          margin-bottom: 5px;
+        }
+        .section-content-minicontent {
+          width: 75%;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
