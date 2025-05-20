@@ -14,6 +14,9 @@ import { useColorModeValue } from '../ui/color-mode';
 import { IoHomeOutline } from "react-icons/io5";
 import { RiPlantLine } from "react-icons/ri";
 import { CiBoxList } from "react-icons/ci";
+import { useEffect, useState } from "react";
+import { BASE_API, ENDPOINT_CONTRIBUTE } from "@/constant/API";
+import { Contribution } from "@/types";
 
 const navItems = [
   { label: 'Home', href: '/dashboard', icon: IoHomeOutline },
@@ -25,7 +28,36 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const bg = useColorModeValue('gray.100', 'gray.800');
+  const router = useRouter();
+  const bg = useColorModeValue("gray.100", "gray.800");
+  const [contribute, setContribute] = useState<Contribution[]>([]);
+
+  useEffect(() => {
+    const fetchContribute = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+        if (!token) return;
+
+        const res = await fetch(`${BASE_API}${ENDPOINT_CONTRIBUTE.list}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await res.json();
+        setContribute(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("❌ Failed to fetch contributes:", error);
+      }
+    };
+
+    fetchContribute();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    router.push("/login");
+  };
 
   return (
     <Box
